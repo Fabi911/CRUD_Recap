@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 
 export default function App({ Component, pageProps }) {
   const [places, setPlaces] = useState(initialPlaces);
+  const router = useRouter();
 
   function handleAddPlace(event) {
     event.preventDefault();
@@ -19,11 +20,20 @@ export default function App({ Component, pageProps }) {
     setPlaces([...places, { ...data, id: uid() }]);
     console.log("places:", places);
   }
+  function handleDeletePlace(id) {
+    setPlaces(places.filter((place) => place.id !== id));
+    router.push("/");
+  }
 
   return (
     <>
       <GlobalStyle />
-      <Component {...pageProps} places={places} onSubmit={handleAddPlace} />
+      <Component
+        {...pageProps}
+        places={places}
+        onSubmit={handleAddPlace}
+        handleDeletePlace={handleDeletePlace}
+      />
     </>
   );
 }
