@@ -1,13 +1,13 @@
-import { useRouter } from "next/router";
+import { useRouter } from "next/router.js";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function DetailPage({ places }) {
+export default function DetailPage({ places, handleDeletePlace }) {
   const router = useRouter();
   const { id } = router.query;
   const placeDetail = places.find((place) => place.id === id);
   /* console.log("Place: ", place); */
-  /* if (!place) return null; */
+  if (!placeDetail) return null;
 
   return (
     <section>
@@ -23,6 +23,14 @@ export default function DetailPage({ places }) {
       <p>{placeDetail.description}</p>
       <Link href={placeDetail.mapURL}>Map URL</Link>
       <Link href="/">Back to Homepage</Link>
+      <button
+        type="button"
+        onClick={() => {
+          handleDeletePlace(placeDetail.id);
+        }}
+      >
+        Delete
+      </button>
     </section>
   );
 }
