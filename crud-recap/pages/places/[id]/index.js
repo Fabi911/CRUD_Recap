@@ -2,7 +2,11 @@ import { useRouter } from "next/router.js";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function DetailPage({ places, handleDeletePlace }) {
+export default function DetailPage({
+  places,
+  handleDeletePlace,
+  handleEditPlace,
+}) {
   const router = useRouter();
   const { id } = router.query;
   const placeDetail = places.find((place) => place.id === id);
@@ -30,6 +34,9 @@ export default function DetailPage({ places, handleDeletePlace }) {
         }}
       >
         Delete
+      </button>
+      <button type="button">
+        <Link href={`/places/${placeDetail.id}/edit`}>Edit</Link>
       </button>
     </section>
   );
