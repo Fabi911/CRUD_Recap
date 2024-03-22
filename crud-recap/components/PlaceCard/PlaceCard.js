@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Image from "next/image.js";
+import Link from "next/link.js";
 
 const StyledSection = styled.section`
   display: flex;
@@ -11,7 +12,7 @@ const StyledSection = styled.section`
 
 const StyledImage = styled(Image)``;
 
-export default function PlaceCard({ image, name, location }) {
+export default function PlaceCard({ image, name, location, id }) {
   return (
     <StyledSection>
       <figcaption>{name}</figcaption>
@@ -25,6 +26,7 @@ export default function PlaceCard({ image, name, location }) {
           height={200}
         ></StyledImage>
       </figure>
+      <Link href={`places/${id}`}>Show more details</Link>
     </StyledSection>
   );
 }
