@@ -8,12 +8,7 @@ export default function App({ Component, pageProps }) {
   const [places, setPlaces] = useState(initialPlaces);
   const router = useRouter();
 
-  function handleAddPlace(event) {
-    event.preventDefault();
-
-    const formData = new FormData(event.target);
-    const data = Object.fromEntries(formData);
-
+  function handleAddPlace(data) {
     console.log("data: ", data);
 
     // const id = data.id || uid();
@@ -25,14 +20,33 @@ export default function App({ Component, pageProps }) {
     router.push("/");
   }
 
+  // function handleEditPlace(newPlace) {
+  //   setPlaces(
+  //     places.map((place) => (place.id === newPlace.id ? newPlace : place))
+  //   );
+  // }
+
+  function handleEditPlace(newPlace) {
+    setPlaces(
+      places.map(function (place) {
+        if (place.id === newPlace.id) {
+          return newPlace;
+        } else {
+          return place;
+        }
+      })
+    );
+  }
+
   return (
     <>
       <GlobalStyle />
       <Component
         {...pageProps}
         places={places}
-        onSubmit={handleAddPlace}
+        handleAddPlace={handleAddPlace}
         handleDeletePlace={handleDeletePlace}
+        handleEditPlace={handleEditPlace}
       />
     </>
   );
