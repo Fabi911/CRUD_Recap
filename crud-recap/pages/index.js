@@ -22,6 +22,7 @@ export default function HomePage({ places }) {
             name={place.name}
             location={place.location}
             image={place.image}
+            id={place.id}
           />
         ))}
       </StyledUl>
