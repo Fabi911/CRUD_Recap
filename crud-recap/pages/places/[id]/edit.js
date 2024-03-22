@@ -2,19 +2,19 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import Form from "@/components/PlaceCard/Form";
 
-export default function EditPage({ places, handleEditPage }) {
+export default function EditPage({ places, handleEditPlace }) {
   const router = useRouter();
   const { id } = router.query;
 
-  const newPlace = places.find((place) => place.id === id);
+  const foundPlace = places.find((place) => place.id === id);
 
-  if (!newPlace) return null;
+  if (!foundPlace) return null;
 
-  console.log("newPlace: ", newPlace);
+  // console.log("newPlace: ", newPlace);
 
   return (
     <>
-      <Form onSubmit={handleEditPage} defaultData={newPlace} />;
+      <Form onSubmit={handleEditPlace} defaultData={foundPlace} isEditMode />
       <Link href="/">Back to Homepage</Link>
     </>
   );
