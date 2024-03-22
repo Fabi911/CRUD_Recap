@@ -20,21 +20,11 @@ export default function App({ Component, pageProps }) {
     router.push("/");
   }
 
-  // function handleEditPlace(newPlace) {
-  //   setPlaces(
-  //     places.map((place) => (place.id === newPlace.id ? newPlace : place))
-  //   );
-  // }
-
-  function handleEditPlace(newPlace) {
+  function handleEditPlace(updatedPlace) {
     setPlaces(
-      places.map(function (place) {
-        if (place.id === newPlace.id) {
-          return newPlace;
-        } else {
-          return place;
-        }
-      })
+      places.map((place) =>
+        place.id === updatedPlace.id ? updatedPlace : place
+      )
     );
   }
 

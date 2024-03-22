@@ -1,4 +1,4 @@
-import { useRouter } from "next/router.js";
+import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
 
